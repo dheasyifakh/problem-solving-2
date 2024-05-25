@@ -1,28 +1,27 @@
 const weightedStrings = (s, queries) =>{
-    //create variable and add a Set to collect the unique value
+    //varibale bobot dengan Set ke store 
     const weight = new Set();
-    //value with an empty string
+    //variable dengan string kosong
     let curChar = '';
     let curWeight = 0;
 
     for (let i = 0; i < s.length; i++){
-        //calculate the weight of the character
+        //kalkulasikan bobot dari karakter string yang diinput
         const charWeight = s.charCodeAt(i) - 'a'.charCodeAt(0) + 1;
 
-        //condition for the character
+        //kondisi looping untuk karakter
         if(s[i] !== curChar){
-          //if character is different from curChar reset to the character
+          //jika karakter tidak sesuai dengan variabel curChar maka reset menjadi karakter
           curChar = s[i];
-          //reset the curWeight to the charWeight
           curWeight = charWeight;
         }else{
-            //character same with the curChar add the charweight to curWeight
             curWeight += charWeight;
         }
+
         weight.add(curWeight);
     }
 
-    
+    //kondisi jika angka queries string sesuai dengan bobot karakter/substring maka return YES jika tidak maka return No
     return queries.map(q =>weight.has(q) ? "Yes" : "No")
 }
 
